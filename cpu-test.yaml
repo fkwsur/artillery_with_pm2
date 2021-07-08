@@ -1,0 +1,12 @@
+config:
+  target: "http://localhost:8080" # host
+  phases:
+    - duration: 30 # 해당 초만큼 실행
+      arrivalRate: 300 # 가상 사용자 수
+scenarios:
+  - flow:
+    - get:
+        url: "/user" # setParam에서 넣은 ID
+        capture:
+          json: 
+          as: 
