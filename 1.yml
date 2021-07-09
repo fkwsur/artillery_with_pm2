@@ -1,0 +1,41 @@
+config:
+    target: http://13.125.141.148
+    tls:
+    rejectUnauthorized: false
+    phases:
+        - duration: 3600
+          arrivalRate: 0.1
+scenarios:
+    - name: "유저 유입테스트 10초에 1명 / 로그인, 메인비디오, 상품보기"
+      flow:
+          - post:
+                url: "/api/v1/user/kakao_signin"
+                json:
+                    oauthid: "1"
+                    appkey: "444"
+          - get:
+                url: "/api/v1/video/main"
+          - get:
+                headers:
+                    xauth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTcxNTkzODksIm9hdXRoaWQiOiIxMTExNjUzNjEyNzA5NjI4MTkyMjYifQ.PFI5SPbPi2ZGFPdqKTrzaNBWUVB6hCKMK3fV-FgO8xI"
+                url: "/api/v1/user/myinform"
+          - get:
+                headers:
+                    xauth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTcxNTkzODksIm9hdXRoaWQiOiIxMTExNjUzNjEyNzA5NjI4MTkyMjYifQ.PFI5SPbPi2ZGFPdqKTrzaNBWUVB6hCKMK3fV-FgO8xI"
+                url: "/api/v1/product/mypick"
+          - get:
+                headers:
+                    xauth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTcxNTkzODksIm9hdXRoaWQiOiIxMTExNjUzNjEyNzA5NjI4MTkyMjYifQ.PFI5SPbPi2ZGFPdqKTrzaNBWUVB6hCKMK3fV-FgO8xI"
+                url: "/api/v1/video/mypick"
+          - get:
+                url: "/app/ecommerce/setting"
+          - get:
+                url: "/app/ecommerce/p_setting"
+          - get:
+                url: "/app/ecommerce/pickbanner"
+          - get:
+                url: "/app/ecommerce/categorybanner"
+          - get:
+                url: "/app/ecommerce/setphases"
+          - get:
+                url: "/api/v1/product/iteminfo?idx=1"
