@@ -1,12 +1,12 @@
 config:
-  target: "http://localhost:8080" # host
+  target: "http://localhost:8081" # host
   phases:
-    - duration: 30 # 해당 초만큼 실행
-      arrivalRate: 3000 # 가상 사용자 수
+    - duration: 60 # 해당 초만큼 실행
+      arrivalRate: 50000 # 가상 사용자 수
 scenarios:
   - flow:
     - get:
-        url: "/user" # setParam에서 넣은 ID
+        url: "/" # setParam에서 넣은 ID
         capture:
           json: 
           as: 
